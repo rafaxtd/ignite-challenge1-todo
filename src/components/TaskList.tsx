@@ -21,17 +21,11 @@ export function TaskList() {
 
    if(newTaskTitle.trim() !== ''){
 
-     let newTask: Task = { id: taskID, title: newTaskTitle, isComplete: false }
+     let newTasks: Task = { id: taskID, title: newTaskTitle, isComplete: false }
 
-
-     return setTasks([...tasks, newTask])
+     return setTasks([...tasks, newTasks])
       
-   } else {
-
-     confirm('Input a title')
-     
-   }
-
+   } 
    
   
   }
@@ -55,23 +49,13 @@ export function TaskList() {
 
   function handleRemoveTask(id: number) {
 
-    let taskIndex = 0
-   
-   if (window.confirm('Are you sure you want to delete?')) {
-     tasks.filter((task, index) => {
-       if(task.id === id) {
-          return taskIndex = index;
-       }  
+    const newTasks = tasks.filter(task => 
+      task.id !== id)
 
-     })
+      console.log(newTasks)
 
-     tasks.splice(taskIndex)
+      return setTasks([...newTasks])
 
-     return setTasks([...tasks])
-
-   }
-
- 
 
 }
 
